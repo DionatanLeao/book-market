@@ -5,9 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping
+@RequestMapping("/customers")
 class CustomerController {
 
     @GetMapping
-    fun helloWorld() = "Hello World"
+    fun helloWorld() = "Customer 1"
+
+    @GetMapping("/2")
+    fun customerTwo() = "Customer 2"
 }
