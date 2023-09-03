@@ -1,5 +1,6 @@
 package com.bookmarket.controller
 
+import com.bookmarket.model.CustomerModel
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -9,8 +10,5 @@ import org.springframework.web.bind.annotation.RestController
 class CustomerController {
 
     @GetMapping
-    fun helloWorld() = "Customer 1"
-
-    @GetMapping("/2")
-    fun customerTwo() = "Customer 2"
+    fun customer() = CustomerModel("1", "Customer1", "customer1@email.com")
 }
