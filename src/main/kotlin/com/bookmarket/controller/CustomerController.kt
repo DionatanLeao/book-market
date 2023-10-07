@@ -5,6 +5,7 @@ import com.bookmarket.controller.request.PutCustomerRequest
 import com.bookmarket.model.CustomerModel
 import jakarta.websocket.server.PathParam
 import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -45,6 +46,14 @@ class CustomerController {
         customers.filter { it.id == id }.first().let {
             it.name = customer.name
             it.email = customer.email
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun delete(@PathVariable id: String) {
+        customers.filter { it.id == id }.first().let {
+            customers.remove(it)
         }
     }
 
