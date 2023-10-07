@@ -2,8 +2,10 @@ package com.bookmarket.controller
 
 import com.bookmarket.controller.request.PostCustomerRequest
 import com.bookmarket.model.CustomerModel
+import jakarta.websocket.server.PathParam
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -19,6 +21,10 @@ class CustomerController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     fun getCustomer() = customers
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    fun findById(@PathVariable id: String) = customers.filter { it.id == id }.first()
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
