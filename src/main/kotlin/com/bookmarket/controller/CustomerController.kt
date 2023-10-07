@@ -1,12 +1,14 @@
 package com.bookmarket.controller
 
 import com.bookmarket.controller.request.PostCustomerRequest
+import com.bookmarket.controller.request.PutCustomerRequest
 import com.bookmarket.model.CustomerModel
 import jakarta.websocket.server.PathParam
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
@@ -35,6 +37,15 @@ class CustomerController {
             customers.last().id.toInt() + 1
         }.toString()
         customers.add(CustomerModel(id, customer.name, customer.email))
+    }
+    
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    fun update(@PathVariable id: String, @RequestBody customer: PutCustomerRequest) {
+        customers.filter { it.id == id }.first().let {
+            it.name = customer.name
+            it.email = customer.email
+        }
     }
 
 }
