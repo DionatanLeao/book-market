@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
@@ -23,7 +24,12 @@ class CustomerController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    fun getCustomer() = customers
+    fun getCustomer(@RequestParam name: String?): List<CustomerModel> {
+        name?.let {
+            return customers.filter { it.name.contains(name, true) }
+        }
+        return customers
+    }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
