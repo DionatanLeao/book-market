@@ -2,9 +2,9 @@ package com.bookmarket.controller
 
 import com.bookmarket.controller.request.PostCustomerRequest
 import com.bookmarket.controller.request.PutCustomerRequest
+import com.bookmarket.extension.toCustomerModel
 import com.bookmarket.model.CustomerModel
 import com.bookmarket.service.CustomerService
-import jakarta.websocket.server.PathParam
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -36,13 +36,13 @@ class CustomerController(
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody customer: PostCustomerRequest) {
-        customerService.create(customer)
+        customerService.create(customer.toCustomerModel())
     }
     
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun update(@PathVariable id: String, @RequestBody customer: PutCustomerRequest) {
-        customerService.update(id, customer)
+        customerService.update(customer.toCustomerModel(id))
     }
 
     @DeleteMapping("/{id}")
