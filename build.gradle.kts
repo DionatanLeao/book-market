@@ -26,7 +26,7 @@ dependencies {
 	implementation("org.hibernate:hibernate:3.5.4-Final")
 	runtimeOnly("com.h2database:h2")
 	runtimeOnly("org.postgresql:postgresql")
-	implementation("org.flywaydb:flyway-core:9.16.0")
+//	implementation("org.flywaydb:flyway-core:9.16.0")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
