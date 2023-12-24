@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.2"
 	kotlin("jvm") version "1.8.22"
 	kotlin("plugin.spring") version "1.8.22"
+	kotlin("plugin.jpa") version "1.6.21"
 }
 
 group = "com.bookmarket"
@@ -21,6 +22,11 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.hibernate:hibernate:3.5.4-Final")
+	runtimeOnly("com.h2database:h2")
+	runtimeOnly("org.postgresql:postgresql")
+//	implementation("org.flywaydb:flyway-core:9.16.0")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
