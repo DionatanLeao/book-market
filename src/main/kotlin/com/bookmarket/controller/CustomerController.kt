@@ -23,15 +23,15 @@ class CustomerController(
     val customerService: CustomerService
 ) {
 
-    @GetMapping
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    fun getCustomer(@RequestParam id: Int?): CustomerModel {
+    fun getCustomer(@PathVariable id: Int): CustomerModel {
         return customerService.getCustomer(id)
     }
 
-    @GetMapping("/{id}")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    fun getAll(@PathVariable name: String) = customerService.getAll(name)
+    fun getAll(@RequestParam name: String?) = customerService.getAll(name)
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
