@@ -25,8 +25,8 @@ class CustomerController(
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    fun getCustomer(@PathVariable id: Int): CustomerModel {
-        return customerService.getCustomer(id)
+    fun getById(@PathVariable id: Int): CustomerModel {
+        return customerService.getById(id)
     }
 
     @GetMapping
