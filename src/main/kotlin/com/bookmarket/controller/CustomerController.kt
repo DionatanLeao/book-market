@@ -25,13 +25,13 @@ class CustomerController(
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    fun getById(@PathVariable id: Int): CustomerModel {
-        return customerService.getById(id)
+    fun findById(@PathVariable id: Int): CustomerModel {
+        return customerService.findById(id)
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    fun getAll(@RequestParam name: String?) = customerService.getAll(name)
+    fun findAll(@RequestParam name: String?) = customerService.findAll(name)
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
