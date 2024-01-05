@@ -1,10 +1,8 @@
 package com.bookmarket.model
 
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
-import jakarta.persistence.GeneratedValue
+import com.bookmarket.enuns.CustomerStatus
+import jakarta.persistence.*
 import jakarta.persistence.GenerationType.IDENTITY
-import jakarta.persistence.Column
 
 @Entity(name = "customer")
 data class CustomerModel(
@@ -14,5 +12,8 @@ data class CustomerModel(
     @Column
     var name: String,
     @Column
-    var email: String
+    var email: String,
+    @Column
+    @Enumerated(EnumType.STRING)
+    var status: CustomerStatus
 )
