@@ -3,19 +3,10 @@ package com.bookmarket.controller
 import com.bookmarket.controller.request.PostCustomerRequest
 import com.bookmarket.controller.request.PutCustomerRequest
 import com.bookmarket.extension.toCustomerModel
-import com.bookmarket.model.CustomerModel
+import com.bookmarket.extension.toResponse
 import com.bookmarket.service.CustomerService
 import org.springframework.http.HttpStatus
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/customers")
@@ -25,13 +16,11 @@ class CustomerController(
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    fun findById(@PathVariable id: Int): CustomerModel {
-        return customerService.findById(id)
-    }
+    fun findById(@PathVariable id: Int) = customerService.findById(id).toResponse()
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    fun findAll(@RequestParam name: String?) = customerService.findAll(name)
+    fun findAll(@RequestParam name: String?) = customerService.findAll(name).map { it.toResponse() }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
