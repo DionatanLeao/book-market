@@ -4,10 +4,13 @@ import com.bookmarket.controller.request.PostBookRequest
 import com.bookmarket.controller.request.PostCustomerRequest
 import com.bookmarket.controller.request.PutBookRequest
 import com.bookmarket.controller.request.PutCustomerRequest
+import com.bookmarket.controller.response.BookResponse
+import com.bookmarket.controller.response.CustomerResponse
 import com.bookmarket.enuns.BookStatus
 import com.bookmarket.enuns.CustomerStatus
 import com.bookmarket.model.BookModel
 import com.bookmarket.model.CustomerModel
+import java.math.BigDecimal
 
 fun PostCustomerRequest.toCustomerModel(): CustomerModel {
     return CustomerModel(
@@ -42,5 +45,25 @@ fun PutBookRequest.toBookModel(previousValue: BookModel): BookModel {
         price = price ?: previousValue.price,
         status = previousValue.status,
         customer = previousValue.customer
+    )
+}
+
+fun CustomerModel.toResponse(): CustomerResponse {
+    return CustomerResponse(
+        id = id,
+        name = name,
+        email = email,
+        status = status
+    )
+}
+
+fun BookModel.toResponse(): BookResponse {
+    return BookResponse(
+        id = id,
+        name = name,
+        price = price,
+        status = status,
+        customer = customer
+
     )
 }
