@@ -24,7 +24,7 @@ class BookService(
         bookRepository.findByStatus(BookStatus.ACTIVE, pageable)
     
     fun findById(id: Int): BookModel =
-        bookRepository.findById(id).orElseThrow()
+        bookRepository.findById(id).orElseThrow{ Exception("There is no such feature") }
 
     fun update(book: BookModel) =
         bookRepository.save(book)
