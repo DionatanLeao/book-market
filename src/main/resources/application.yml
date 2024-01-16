@@ -1,4 +1,6 @@
 spring:
+  jackson:
+    default-property-inclusion: non_null
   datasource:
     url: jdbc:postgresql://localhost:5432/bookmarket
     username: postgres

@@ -1,6 +1,7 @@
 package com.bookmarket.service
 
 import com.bookmarket.enuns.CustomerStatus
+import com.bookmarket.exception.NotFoundException
 import com.bookmarket.model.CustomerModel
 import com.bookmarket.repository.CustomerRepository
 import org.springframework.stereotype.Service
@@ -24,7 +25,7 @@ class CustomerService(
         customerRepository.save(customer)
 
     fun findById(id: Int): CustomerModel =
-        customerRepository.findById(id).orElseThrow()
+        customerRepository.findById(id).orElseThrow{ NotFoundException("Customer [$id] not exists", "ML-0002") }
 
     fun update(customer: CustomerModel) {
         if(!customerRepository.existsById(customer.id!!)) {

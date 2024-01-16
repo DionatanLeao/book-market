@@ -1,6 +1,7 @@
 package com.bookmarket.service
 
 import com.bookmarket.enuns.BookStatus
+import com.bookmarket.exception.NotFoundException
 import com.bookmarket.model.BookModel
 import com.bookmarket.model.CustomerModel
 import com.bookmarket.repository.BookRepository
@@ -24,7 +25,7 @@ class BookService(
         bookRepository.findByStatus(BookStatus.ACTIVE, pageable)
     
     fun findById(id: Int): BookModel =
-        bookRepository.findById(id).orElseThrow{ Exception("There is no such feature") }
+        bookRepository.findById(id).orElseThrow{ NotFoundException("Book [$id] not exists", "ML-0001") }
 
     fun update(book: BookModel) =
         bookRepository.save(book)
