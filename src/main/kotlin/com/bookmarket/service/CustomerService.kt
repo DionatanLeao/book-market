@@ -1,6 +1,7 @@
 package com.bookmarket.service
 
 import com.bookmarket.enuns.CustomerStatus
+import com.bookmarket.enuns.Errors
 import com.bookmarket.exception.NotFoundException
 import com.bookmarket.model.CustomerModel
 import com.bookmarket.repository.CustomerRepository
@@ -25,7 +26,7 @@ class CustomerService(
         customerRepository.save(customer)
 
     fun findById(id: Int): CustomerModel =
-        customerRepository.findById(id).orElseThrow{ NotFoundException("Customer [$id] not exists", "ML-0002") }
+        customerRepository.findById(id).orElseThrow{ NotFoundException(Errors.ML201.message.format(id), Errors.ML201.code) }
 
     fun update(customer: CustomerModel) {
         if(!customerRepository.existsById(customer.id!!)) {
