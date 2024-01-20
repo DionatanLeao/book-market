@@ -1,6 +1,7 @@
 package com.bookmarket.service
 
 import com.bookmarket.enuns.BookStatus
+import com.bookmarket.enuns.Errors
 import com.bookmarket.exception.NotFoundException
 import com.bookmarket.model.BookModel
 import com.bookmarket.model.CustomerModel
@@ -25,7 +26,7 @@ class BookService(
         bookRepository.findByStatus(BookStatus.ACTIVE, pageable)
     
     fun findById(id: Int): BookModel =
-        bookRepository.findById(id).orElseThrow{ NotFoundException("Book [$id] not exists", "ML-0001") }
+        bookRepository.findById(id).orElseThrow{ NotFoundException(Errors.ML101.message.format(id), Errors.ML101.code) }
 
     fun update(book: BookModel) =
         bookRepository.save(book)
