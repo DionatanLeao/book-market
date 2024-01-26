@@ -9,6 +9,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.context.request.WebRequest
 
 @ControllerAdvice
@@ -53,7 +54,7 @@ class ControllerAdvice {
             Errors.ML001.code,
             ex.bindingResult.fieldErrors.map { FieldErrorResponse(it.defaultMessage ?: "Invalid", it.field) }
         )
-        return ResponseEntity(error, HttpStatus.NOT_FOUND)
+        return ResponseEntity(error, HttpStatus.UNPROCESSABLE_ENTITY)
     }
 
     @ExceptionHandler(HttpMessageNotReadableException::class)
@@ -67,6 +68,6 @@ class ControllerAdvice {
             Errors.ML001.code,
             null
         )
-        return ResponseEntity(error, HttpStatus.NOT_FOUND)
+        return ResponseEntity(error, HttpStatus.UNPROCESSABLE_ENTITY)
     }
 }
