@@ -6,6 +6,7 @@ import com.bookmarket.extension.toBookModel
 import com.bookmarket.extension.toResponse
 import com.bookmarket.service.BookService
 import com.bookmarket.service.CustomerService
+import jakarta.validation.Valid
 import org.springframework.data.domain.Pageable
 import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
@@ -20,7 +21,7 @@ class BookController(
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@RequestBody request: PostBookRequest) {
+    fun create(@RequestBody @Valid request: PostBookRequest) {
         bookService.create(request.toBookModel(customerService.findById(request.customerId)))
     }
 

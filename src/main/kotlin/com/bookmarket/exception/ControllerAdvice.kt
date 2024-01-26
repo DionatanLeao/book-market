@@ -5,6 +5,7 @@ import com.bookmarket.controller.response.FieldErrorResponse
 import com.bookmarket.enuns.Errors
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -51,6 +52,20 @@ class ControllerAdvice {
             Errors.ML001.message,
             Errors.ML001.code,
             ex.bindingResult.fieldErrors.map { FieldErrorResponse(it.defaultMessage ?: "Invalid", it.field) }
+        )
+        return ResponseEntity(error, HttpStatus.NOT_FOUND)
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException::class)
+    fun handleHttpMessageNotReadableException(
+        ex: HttpMessageNotReadableException,
+        request: WebRequest
+    ): ResponseEntity<ErrorResponse> {
+        val error = ErrorResponse(
+            HttpStatus.UNPROCESSABLE_ENTITY.value(),
+            Errors.ML001.message,
+            Errors.ML001.code,
+            null
         )
         return ResponseEntity(error, HttpStatus.NOT_FOUND)
     }
