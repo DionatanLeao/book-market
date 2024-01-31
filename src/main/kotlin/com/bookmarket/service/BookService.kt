@@ -28,6 +28,10 @@ class BookService(
     fun findById(id: Int): BookModel =
         bookRepository.findById(id).orElseThrow{ NotFoundException(Errors.ML101.message.format(id), Errors.ML101.code) }
 
+    fun findAllByIds(bookIds: Set<Int>): List<BookModel> {
+        return bookRepository.findAllById(bookIds).toList()
+    }
+
     fun update(book: BookModel) =
         bookRepository.save(book)
     
