@@ -10,7 +10,6 @@ import com.bookmarket.enuns.BookStatus
 import com.bookmarket.enuns.CustomerStatus
 import com.bookmarket.model.BookModel
 import com.bookmarket.model.CustomerModel
-import java.math.BigDecimal
 
 fun PostCustomerRequest.toCustomerModel(): CustomerModel {
     return CustomerModel(
