@@ -4,8 +4,7 @@ import jakarta.persistence.*
 import java.math.BigDecimal
 import java.time.LocalDateTime
 
-@Entity
-@Table
+@Entity(name = "purchase")
 data class PurchaseModel(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
