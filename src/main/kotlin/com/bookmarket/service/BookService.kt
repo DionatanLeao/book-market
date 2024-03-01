@@ -49,4 +49,11 @@ class BookService(
         bookRepository.saveAll(books)
     }
 
+    fun purchase(books: MutableList<BookModel>) {
+        books.map {
+            it.status = BookStatus.SOLD
+        }
+        bookRepository.saveAll(books)
+    }
+
 }
