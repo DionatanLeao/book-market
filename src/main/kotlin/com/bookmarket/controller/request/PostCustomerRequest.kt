@@ -9,5 +9,7 @@ data class PostCustomerRequest(
     val name: String,
     @field:Email(message = "Email must be valid")
     @EmailAvailable
-    val email: String
+    val email: String,
+    @field:NotEmpty(message = "Password must be informed")
+    var password: String
 )
