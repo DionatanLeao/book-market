@@ -1,6 +1,6 @@
 package com.bookmarket.controller.response
 
-import com.bookmarket.enuns.CustomerStatus
+import com.bookmarket.enums.CustomerStatus
 
 data class CustomerResponse(
     var id: Int? = null,
