@@ -1,4 +1,4 @@
-package com.bookmarket.enuns
+package com.bookmarket.enums
 
 enum class BookStatus {
     ACTIVE,
