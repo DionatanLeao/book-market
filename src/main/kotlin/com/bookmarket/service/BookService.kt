@@ -1,7 +1,7 @@
 package com.bookmarket.service
 
-import com.bookmarket.enuns.BookStatus
-import com.bookmarket.enuns.Errors
+import com.bookmarket.enums.BookStatus
+import com.bookmarket.enums.Errors
 import com.bookmarket.exception.NotFoundException
 import com.bookmarket.model.BookModel
 import com.bookmarket.model.CustomerModel

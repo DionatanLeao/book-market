@@ -1,7 +1,7 @@
 package com.bookmarket.model
 
-import com.bookmarket.enuns.BookStatus
-import com.bookmarket.enuns.Errors
+import com.bookmarket.enums.BookStatus
+import com.bookmarket.enums.Errors
 import com.bookmarket.exception.BadRequestException
 import jakarta.persistence.*
 import java.math.BigDecimal

@@ -1,7 +1,8 @@
 package com.bookmarket.service
 
-import com.bookmarket.enuns.CustomerStatus
-import com.bookmarket.enuns.Errors
+import com.bookmarket.enums.CustomerStatus
+import com.bookmarket.enums.Errors
+import com.bookmarket.enums.Profile
 import com.bookmarket.exception.NotFoundException
 import com.bookmarket.model.CustomerModel
 import com.bookmarket.repository.CustomerRepository
@@ -22,8 +23,12 @@ class CustomerService(
         return customerRepository.findAll().toList()
     }
 
-    fun create(customer: CustomerModel) =
-        customerRepository.save(customer)
+    fun create(customer: CustomerModel) {
+        val customerCopy = customer.copy(
+            roles = setOf(Profile.CUSTOMER)
+        )
+        customerRepository.save(customerCopy)
+    }
 
     fun findById(id: Int): CustomerModel =
         customerRepository.findById(id).orElseThrow{ NotFoundException(Errors.ML201.message.format(id), Errors.ML201.code) }

@@ -6,8 +6,8 @@ import com.bookmarket.controller.request.PutBookRequest
 import com.bookmarket.controller.request.PutCustomerRequest
 import com.bookmarket.controller.response.BookResponse
 import com.bookmarket.controller.response.CustomerResponse
-import com.bookmarket.enuns.BookStatus
-import com.bookmarket.enuns.CustomerStatus
+import com.bookmarket.enums.BookStatus
+import com.bookmarket.enums.CustomerStatus
 import com.bookmarket.model.BookModel
 import com.bookmarket.model.CustomerModel
 

@@ -1,6 +1,6 @@
 package com.bookmarket.controller.response
 
-import com.bookmarket.enuns.BookStatus
+import com.bookmarket.enums.BookStatus
 import com.bookmarket.model.CustomerModel
 import java.math.BigDecimal
 
